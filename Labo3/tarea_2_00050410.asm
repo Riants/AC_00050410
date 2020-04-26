@@ -58,18 +58,10 @@ lup2:	mov	bl, [comnt2+di]
 
 lup3:	mul	bx
 	mov	[di+210h], ax
-	mov	[di+220h], di
 	cmp	di, 6d
 	jb	sal1
 	cmp	di, 6d
 	jae	sal2
-
-	;Ejercicio 3
-
-	mov	ax, 0000h
-	mov	bx, 0000h
-	mov	cx, 0000h
-	mov	DX, 0000h
 
 sal1:	inc	di
 	loop	lup3
@@ -78,13 +70,40 @@ sal2: 	inc	di
 	inc	di
 	loop	lup3
 
+	;Ejercicio 3
+
+	mov	ax, 0000h
+	mov	bx, 0000h
+	mov	cx, 0000h
+	mov	dx, 0000h
+	mov	di, 0d
+
+	mov 	bx, 0d
+	mov	[220h], bx
+	mov	ax, 1d
+	mov	[221h], ax
+	mov 	cx, 15d
+	mov	dx, 256d
+
+frib:	mov	ax, [220h+di]
+	mov	bx, [221h+di]
+	add	ax, bx
+	cmp	ax, dx
+	jb	salf1
+	cmp	ax, dx
+	jae	salf2
+
+salf1:	mov	[di+222h], ax
+	inc	di
+	loop	frib
+
+salf2:	mov	[di+222h], ax
+	inc	di
+	loop	frib
+
 	int	20h
 
 section .data
 ;Data ejercicio 1
 comnt1 	db 	"Solo necesito 0"
 comnt2 	db 	"Aun se pasa"
-
-;Data ejercicio 2
-
-;Data ejercicio 3
