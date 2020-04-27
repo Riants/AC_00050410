@@ -78,28 +78,28 @@ sal2: 	inc	di
 	mov	dx, 0000h
 	mov	di, 0d
 
-	mov 	bx, 0d
-	mov	[220h], bx
-	mov	ax, 1d
-	mov	[221h], ax
-	mov 	cx, 15d
-	mov	dx, 256d
+	mov 	ax, 0d
+	mov	[220h], ax
+	mov	bx, 1d
+	mov	[221h], bx
+	mov 	cx, 14d
+	mov	dx, 255d
 
 frib:	mov	ax, [220h+di]
 	mov	bx, [221h+di]
 	add	ax, bx
 	cmp	ax, dx
 	jb	salf1
-	cmp	ax, dx
-	jae	salf2
+	;cmp	ax, dx
+	;jae	salf2
 
 salf1:	mov	[di+222h], ax
 	inc	di
 	loop	frib
 
-salf2:	mov	[di+222h], ax
-	inc	di
-	loop	frib
+;salf2:	mov	[di+223h], ax
+;	inc	di
+;	loop	frib
 
 	int	20h
 
